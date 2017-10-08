@@ -12,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,9 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout blurredBg;
     private ProgressBar progressBar;
     private ListView donationList;
+    private TextView diagnosis;
+    private TextView amountRaised;
+    private TextView amountGoal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +38,19 @@ public class ProfileActivity extends AppCompatActivity {
         blurredBg = (LinearLayout) findViewById(R.id.blurredBackground);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         donationList = (ListView) findViewById(R.id.donationList);
+        diagnosis = (TextView) findViewById(R.id.profileDiagnosis);
+        amountRaised = (TextView) findViewById(R.id.amountRaised);
+        amountGoal = (TextView) findViewById(R.id.amountGoal);
 
-        ArrayList<String> values = new ArrayList<String>();
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
-        values.add("Epli");
+        String name = getIntent().getExtras().getString("name");
+        Profile mProfile = ProfileStorage.getProfile(name);
 
 
-        ArrayAdapter<String> adapter = new donationListAdapter(this,
+        ArrayList<Message> values = new ArrayList<Message>();
+        // Fyrir öll mProfile.messages, gera values.add(aksdjskaf);
+
+
+        ArrayAdapter<Message> adapter = new donationListAdapter(this,
                 android.R.layout.simple_list_item_1, values);
 
 
@@ -62,8 +59,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         setListViewHeightBasedOnChildren(donationList);
 
-        progressBar.setMax(10000);
-        progressBar.setProgress(6322);
+        amountRaised.setText(mProfile.getRaisedAmount() + "$");
+        amountGoal.setText(mProfile.getGoalAmount() + "$");
+        diagnosis.setText(mProfile.getDiagnosis());
+
+        progressBar.setMax(mProfile.getGoalAmount());
+        progressBar.setProgress(mProfile.getRaisedAmount());
 
         scrollView.setVerticalScrollbarPosition(0);
 

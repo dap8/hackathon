@@ -42,6 +42,6 @@
         android:clickable="true"
         app:backgroundTint="@android:color/white"
         app:fabSize="mini"
-        app:srcCompat="@drawable/ic_search_black_24dp" />
+        app:srcCompat="@drawable/newuser" />
 
 </FrameLayout>

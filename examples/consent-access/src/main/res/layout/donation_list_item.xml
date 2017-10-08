@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/donationAmount"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
@@ -33,7 +33,7 @@
             android:paddingTop="5dp">
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/donationName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
@@ -42,7 +42,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/donationMessage"
                 android:layout_width="220dp"
                 android:layout_height="48dp"
                 android:text="Stay murky little brother, life is a sneaky little fucker."

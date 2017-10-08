@@ -1,0 +1,102 @@
+{
+  "project_info": {
+    "project_number": "395638975291",
+    "firebase_url": "https://support-3d404.firebaseio.com",
+    "project_id": "support-3d404",
+    "storage_bucket": "support-3d404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395638975291:android:453f2101c672a7b2",
+        "android_client_info": {
+          "package_name": "com.consentacces.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395638975291-k0lf76ll26v8hq334jhijashk25ch2q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz8Eqco0jIcJVoqUhrKIKF86dSudgDiGA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395638975291:android:f4fdcbb95a0d3d9d",
+        "android_client_info": {
+          "package_name": "me.digi.examples.ca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395638975291-5ivch7sn5b1nbop397vr991gbkvpu8kl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.digi.examples.ca",
+            "certificate_hash": "abd101fbf34dff8d25c5a5ec9e6a6ac307c46a4a"
+          }
+        },
+        {
+          "client_id": "395638975291-190aps5l7ahviqgs9l3173pqc4f4sgmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.digi.examples.ca",
+            "certificate_hash": "01b7a511e1cee2bbee4b4e8523d35a0b3bd55b20"
+          }
+        },
+        {
+          "client_id": "395638975291-5j96schhn552ifggg2chp9r51ln05bkm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.digi.examples.ca",
+            "certificate_hash": "c104ad2690e0b7d2f6d7d452cbea71c5330b5f91"
+          }
+        },
+        {
+          "client_id": "395638975291-k0lf76ll26v8hq334jhijashk25ch2q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz8Eqco0jIcJVoqUhrKIKF86dSudgDiGA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395638975291-k0lf76ll26v8hq334jhijashk25ch2q5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

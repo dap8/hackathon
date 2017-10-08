@@ -163,6 +163,9 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
                 Log.d(TAG, "onSuggestionClicked()");
 
                 mLastQuery = searchSuggestion.getBody();
+                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                i.putExtra("name", mLastQuery);
+                startActivity(i);
             }
 
             @Override

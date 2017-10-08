@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,6 +42,9 @@ public class CallbackActivity extends AppCompatActivity {
     private TextView statusText;
     private RadioGroup radioGroup;
     private Button createAccountButton;
+    private DataBaseHandler databasehandler;
+    private String mDiagnosis;
+    private EditText amountRequested;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +52,16 @@ public class CallbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_callback);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
+        amountRequested = (EditText) findViewById(R.id.requestedAmountInput);
 
         createAccountButton = (Button) findViewById(R.id.createAccountButton);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databasehandler = new DataBaseHandler(getApplicationContext());
+                if(mDiagnosis == null) mDiagnosis = "Herbert Guðmundsson";
+                int requestedAmount = Integer.parseInt(amountRequested.getText().toString());
+                databasehandler.addProfile(new Profile("Óskar Ólafsson", mDiagnosis, requestedAmount));
                 startActivity(new Intent(CallbackActivity.this, ProfileActivity.class));
             }
         });
@@ -144,7 +153,9 @@ public class CallbackActivity extends AppCompatActivity {
                         Matcher matcher = pattern.matcher(result.body.fileContent.toString());
                         if (matcher.find())
                         {
-                            Log.d(TAG,matcher.group(1));
+                            Log.d(TAG, matcher.group(1));
+                            addRadioButton(matcher.group(1));
+                            mDiagnosis = matcher.group(1);
                         }
                     }
                 }
