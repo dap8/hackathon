@@ -3,8 +3,8 @@ apply from: project.file('../../config/gradle/quality.gradle')
 apply from: project.file('../../config/shared/shared.gradle')
 
 validateJenkinsSampleApp()
-def sampleContractId = fetchWithThrow(new Properties(),'sdkconfig.properties', 'digimeConsentAccessContractId', "Rename sdkconfig.properties.default and substitute \"digimeConsentAccessContractId\" with your contractID.")
-def sampleP12 = fetchWithThrow(new Properties(),'sdkconfig.properties', 'digimeConsentAccessP12Keystore', "Rename sdkconfig.properties.default and substitute \"digimeConsentAccessP12Keystore\" with path of p12 store in assets.")
+def sampleContractId = fetchWithThrow(new Properties(), 'sdkconfig.properties', 'digimeConsentAccessContractId', "Rename sdkconfig.properties.default and substitute \"digimeConsentAccessContractId\" with your contractID.")
+def sampleP12 = fetchWithThrow(new Properties(), 'sdkconfig.properties', 'digimeConsentAccessP12Keystore', "Rename sdkconfig.properties.default and substitute \"digimeConsentAccessP12Keystore\" with path of p12 store in assets.")
 
 android {
     compileSdkVersion 25
@@ -47,9 +47,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(path: ':digime-core')
 
+    compile 'jp.wasabeef:blurry:2.1.1'
+    compile 'com.github.arimorty:floatingsearchview:2.1.1'
     compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.4.0'
-
     testCompile 'junit:junit:4.12'
 }
