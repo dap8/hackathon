@@ -61,7 +61,7 @@ public class CallbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 databasehandler = new DataBaseHandler(getApplicationContext());
-                if(mDiagnosis == null) mDiagnosis = "Herbert Guðmundsson";
+                if(mDiagnosis == null) mDiagnosis = "nothing";
                 int requestedAmount = Integer.parseInt(amountRequested.getText().toString());
                 String bankAccountInfo = bankAccount.getText().toString();
                 databasehandler.addProfile(new Profile("Óskar Ólafsson", mDiagnosis, bankAccountInfo, requestedAmount));

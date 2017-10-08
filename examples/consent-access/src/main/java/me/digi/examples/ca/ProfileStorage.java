@@ -12,10 +12,13 @@ import java.util.List;
 
 public class ProfileStorage extends Application {
     private List<Profile> profiles;
+    private DataBaseHandler dataBaseHandler;
 
-    public void init()
+    public void init(DataBaseHandler dataBaseHandler)
     {
+
         this.profiles = new ArrayList<>();
+        this.dataBaseHandler = dataBaseHandler;
     }
 
     public List<Profile> getProfiles() {
@@ -36,5 +39,17 @@ public class ProfileStorage extends Application {
             if(profile.getName().toLowerCase().equals(name.toLowerCase())) return profile;
         }
         return null;
+    }
+
+    public void addMessage(Message message, String id){
+        dataBaseHandler.addMessage(message, id);
+    }
+
+    public DataBaseHandler getDataBaseHandler() {
+        return dataBaseHandler;
+    }
+
+    public void setDataBaseHandler(DataBaseHandler dataBaseHandler) {
+        this.dataBaseHandler = dataBaseHandler;
     }
 }
