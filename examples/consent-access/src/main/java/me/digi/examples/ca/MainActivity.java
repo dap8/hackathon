@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this, ProfileActivity.class), 1);
+                startActivityForResult(new Intent(MainActivity.this, CallbackActivity.class), 1);
             }
         });
 
