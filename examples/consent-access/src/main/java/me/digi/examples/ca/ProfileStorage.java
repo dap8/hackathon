@@ -28,4 +28,12 @@ public class ProfileStorage extends Application {
     public void addProfile(Profile profile){
         profiles.add(profile);
     }
+
+    public Profile getProfile(String name) {
+        for(Profile profile : profiles)
+        {
+            if(profile.getName() == name) return profile;
+        }
+        return null;
+    }
 }

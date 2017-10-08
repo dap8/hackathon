@@ -23,8 +23,12 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.Util;
 import com.google.gson.JsonElement;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import me.digi.examples.ca.searchData.ColorSuggestion;
@@ -65,7 +69,10 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         profileStorage = ((ProfileStorage)getApplicationContext());
         profileStorage.init();
         databasehandler = new DataBaseHandler(getApplicationContext());
-        databasehandler.loadProfiles();
+        //databasehandler.loadProfiles();
+        //addTestData();
+        //List<Message> messages = new ArrayList<>();
+        //databasehandler.addProfile(new Profile("bob","sick","1111",1000));
 
         actionButton = (FloatingActionButton) findViewById(R.id.actionButton);
 
@@ -318,6 +325,41 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         }
         if (current == 0) {
             statusText.setText(R.string.data_retrieved);
+        }
+    }
+
+    private void addTestData() {
+        String[] greetings = {"Get better", "Stay strong", "You're a hero!", "I'm praying for you"};
+        String[] names = {"Tatum", "Lovella", "Jasmin", "Ofelia", "Ellena","Annemarie","Roy","Trey","Consuela", "Laurice","Klara","Martin","Natosha", "Vera","Robbin","Eusebio", "Conchita","Lakia","Florine","Fred"};
+        String[] diseases = {"Leukemia", "Alzheimer's", "Parkinson's", "Hepatitis C"};
+        int NUMBER_OF_PROFILES = 10;
+        int NUMBER_OF_MESSAGES = 10;
+        final Random rand = new Random();
+        int messageId = 0;
+
+        for(int i = 0; i<NUMBER_OF_PROFILES; i++)
+        {
+            String account = rand.nextInt(9999) + "-" + rand.nextInt(99) + "-" + rand.nextInt(9999);
+            int amount = rand.nextInt(100000);
+            int raisedAmount = rand.nextInt(amount);
+
+            String name = names[rand.nextInt(names.length-1)];
+            String diagnosis = diseases[rand.nextInt(diseases.length-1)];
+
+            Map<String, Message> messages = new HashMap<>();
+            //List<Message> messages = new ArrayList<>();
+            for(int k = 0; k<NUMBER_OF_MESSAGES; k++)
+            {
+                String messageName = names[rand.nextInt(names.length-1)];
+                String greeting = greetings[rand.nextInt(greetings.length-1)];
+                int donationAmount = rand.nextInt(amount/10);
+                Message message = new Message(messageName,greeting,donationAmount);
+                messages.put(messageId+"",message);
+                messageId++;
+            }
+            Profile profile = new Profile(name,diagnosis,account,amount,raisedAmount,messages);
+            //profileStorage.addProfile(profile);
+            databasehandler.addProfile(profile);
         }
     }
 }

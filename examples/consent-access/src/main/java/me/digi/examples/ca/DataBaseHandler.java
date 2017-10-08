@@ -1,11 +1,15 @@
 package me.digi.examples.ca;
 
 import android.content.Context;
+import android.os.Debug;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -37,20 +41,45 @@ public class DataBaseHandler {
     }
 
     public void addProfile(Profile profile){
-        String key = profileEndPoint.push().getKey();
-        profile.setId(key);
-        Map<String, Message> messages = profile.getMessages();
-        profile.setMessages(null);
-        profileEndPoint.child(key).setValue(profile);
-        DatabaseReference messageNode = profileEndPoint.child(key).child(MESSAGE_CONSTANT);
-        //Iterator it = messages.entrySet().iterator();
-
-        for(Map.Entry<String, Message> message : messages.entrySet())
+        try
         {
-            String messageKey = messageNode.push().getKey();
-            message.getValue().setId(messageKey);
-            messageNode.child(messageKey).setValue(message.getValue());
+            Log.d("pepe", "About to add with this name: " + profile.getName());
+            Log.d("pepe", "Size of message array: " + profile.getMessages().size());
+            String key = profileEndPoint.push().getKey();
+            Log.d("pepe", "got this key from firebase: " + key);
+            profile.setId(key);
+            Map<String, Message> messages = profile.getMessages();
+            profile.setMessages(null);
+            try
+            {
+                profileEndPoint.child(key).setValue(profile).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("onfailure_log", e.getLocalizedMessage());
+                    }
+                });;
+            }
+
+            catch (DatabaseException e){
+                Log.e("DATABASE_ERROR","ERROR GUNGA GINGA inside profilenedpoint error:",e);
+            }
+
+            DatabaseReference messageNode = profileEndPoint.child(key).child(MESSAGE_CONSTANT);
+            //Iterator it = messages.entrySet().iterator();
+
+            for(Map.Entry<String, Message> message : messages.entrySet())
+            {
+                String messageKey = messageNode.push().getKey();
+                message.getValue().setId(messageKey);
+                messageNode.child(messageKey).setValue(message.getValue());
+            }
+            profileStorage.addProfile(profile);
         }
+
+        catch (DatabaseException e){
+            Log.e("DATABASE_ERROR","ERROR GUNGA GINGA:",e);
+        }
+
     }
 
     public void addMessage(Message message, String profileId){

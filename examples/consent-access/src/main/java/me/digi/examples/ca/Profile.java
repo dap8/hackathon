@@ -13,6 +13,7 @@ public class Profile {
     private String id;
     private String name;
     private String diagnosis;
+    private String account;
     private int goalAmount;
     private int raisedAmount;
     private Map<String, Message> messages;
@@ -21,23 +22,35 @@ public class Profile {
         this.id = null;
         this.name = null;
         this.diagnosis = null;
+        this.account = null;
         this.goalAmount = 0;
         this.raisedAmount = 0;
         this.messages = null;
     }
 
-    public Profile(String name, String diagnosis, int goalAmount){
+    public Profile(String name, String diagnosis, String account, int goalAmount){
         this.name = name;
         this.diagnosis = diagnosis;
+        this.account = account;
         this.goalAmount = goalAmount;
         this.raisedAmount = 0;
         this.messages = new HashMap<>();
     }
 
-    public Profile(String id, String name, String diagnosis, int goalAmount, int raisedAmount, Map<String, Message> messages){
+    public Profile(String id, String name, String diagnosis, String account, int goalAmount, int raisedAmount, Map<String, Message> messages){
         this.id = id;
         this.name = name;
         this.diagnosis = diagnosis;
+        this.account = account;
+        this.goalAmount = goalAmount;
+        this.raisedAmount = raisedAmount;
+        this.messages = messages;
+    }
+
+    public Profile(String name, String diagnosis, String account, int goalAmount, int raisedAmount, Map<String, Message> messages){
+        this.name = name;
+        this.diagnosis = diagnosis;
+        this.account = account;
         this.goalAmount = goalAmount;
         this.raisedAmount = raisedAmount;
         this.messages = messages;
@@ -87,6 +100,11 @@ public class Profile {
         return messages;
     }
 
+    public List<Message> getListedMessages() {
+        if(this.messages != null) return new ArrayList<Message>(this.messages.values());
+        return null;
+    }
+
     public void setMessages(Map<String, Message> messages) {
         this.messages = messages;
     }
@@ -94,5 +112,13 @@ public class Profile {
     public void addMessage(Message message)
     {
         this.messages.put(message.getId(),message);
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }
