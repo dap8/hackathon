@@ -66,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         String name = getIntent().getExtras().getString("name");
         Profile mProfile = profileStorage.getProfile(name);
+        name = mProfile.getName();
 
         nameText.setText(mProfile.getName());
 
