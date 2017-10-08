@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 
@@ -35,10 +36,21 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     private final AtomicInteger counter = new AtomicInteger(0);
     private final AtomicInteger failedCount = new AtomicInteger(0);
     private int allFiles = 0;
+    private DataBaseHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ProfileStorage profileStorage = new ProfileStorage();
+        dbHandler = new DataBaseHandler(profileStorage);
+
+        Profile johnDoe = new Profile("Poomba","Cancer",1000);
+        Message message = new Message("Steinar", "Láttu þér batna xoxo", 1000);
+        johnDoe.addMessage(message);
+        dbHandler.addProfile(johnDoe);
+        dbHandler.loadProfiles();
+
         setContentView(R.layout.activity_main);
         dgmClient = DigiMeClient.getInstance();
 
