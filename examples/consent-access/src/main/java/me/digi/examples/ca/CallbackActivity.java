@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +36,9 @@ public class CallbackActivity extends AppCompatActivity {
     private SDKCallback<CASession> cb;
     private DigiMeAuthorizationManager authManager;
     private TextView statusText;
+    private ListView list;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,12 @@ public class CallbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_callback);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        list = (ListView) findViewById(R.id.listView1);
+        arrayList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+        list.setAdapter(adapter);
+
+
 
         this.cb = new SDKCallback<CASession>() {
             @Override
@@ -118,6 +130,18 @@ public class CallbackActivity extends AppCompatActivity {
                         Matcher matcher = pattern.matcher(result.body.fileContent.toString());
                         if (matcher.find())
                         {
+                            arrayList.add(matcher.group(1));
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add("stuff");
+                            arrayList.add(matcher.group(1));
+                            adapter.notifyDataSetChanged();
                             writeStatus(matcher.group(1));
                         }
                     }
