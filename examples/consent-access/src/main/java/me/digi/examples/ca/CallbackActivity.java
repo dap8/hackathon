@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import me.digi.sdk.core.session.CASession;
 import me.digi.sdk.core.DigiMeAuthorizationManager;
@@ -110,13 +112,22 @@ public class CallbackActivity extends AppCompatActivity {
             DigiMeClient.getInstance().getFileContent(fileId, new SDKCallback<CAFileResponse>() {
                 @Override
                 public void succeeded(SDKResponse<CAFileResponse> result) {
-                    writeStatus("Content retrieved");
-                    Log.d(TAG, "Content for file " + fileId + ": " + result.body.fileContent);
+                    //writeStatus("Content retrieved");
+                    if (!result.body.fileContent.toString().contains("null")){
+                        Pattern pattern = Pattern.compile("'(.*?)'");
+                        Matcher matcher = pattern.matcher(result.body.fileContent.toString());
+                        if (matcher.find())
+                        {
+                            writeStatus(matcher.group(1));
+                        }
+                    }
+
+                    Log.d(TAG, "Content for file " + fileId + ": " + result.body.fileContent.toString());
                 }
 
                 @Override
                 public void failed(SDKException exception) {
-                    Log.d(TAG, "Failed to retrieve file content for file: " + fileId + "; Reason: " + exception);
+                    Log.e(TAG, "Failed to retrieve file content for file: " + fileId + "; Reason: " + exception);
                 }
             });
         }
