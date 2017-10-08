@@ -42,7 +42,7 @@ public class DataBaseHandler {
         Map<String, Message> messages = profile.getMessages();
         profile.setMessages(null);
         profileEndPoint.child(key).setValue(profile);
-        DatabaseReference messageNode = profileEndPoint.child(key).child("messages");
+        DatabaseReference messageNode = profileEndPoint.child(key).child(MESSAGE_CONSTANT);
         //Iterator it = messages.entrySet().iterator();
 
         for(Map.Entry<String, Message> message : messages.entrySet())
@@ -51,8 +51,12 @@ public class DataBaseHandler {
             message.getValue().setId(messageKey);
             messageNode.child(messageKey).setValue(message.getValue());
         }
+    }
 
-
+    public void addMessage(Message message, String profileId){
+        DatabaseReference messageNode = profileEndPoint.child(profileId).child(MESSAGE_CONSTANT);
+        String key = messageNode.push().getKey();
+        messageNode.child(key).setValue(message);
     }
 
     public void loadProfiles(){
