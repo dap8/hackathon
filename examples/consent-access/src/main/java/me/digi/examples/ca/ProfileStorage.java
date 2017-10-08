@@ -33,7 +33,7 @@ public class ProfileStorage extends Application {
     public Profile getProfile(String name) {
         for(Profile profile : profiles)
         {
-            if(profile.getName().equals(name)) return profile;
+            if(profile.getName().toLowerCase().equals(name)) return profile;
         }
         return null;
     }

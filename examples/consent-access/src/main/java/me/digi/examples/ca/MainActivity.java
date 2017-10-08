@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
             @Override
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
-                ColorSuggestion colorSuggestion = (ColorSuggestion) searchSuggestion;
+                /*ColorSuggestion colorSuggestion = (ColorSuggestion) searchSuggestion;
                 DataHelper.findColors(getApplicationContext(), colorSuggestion.getBody(),
                         new DataHelper.OnFindColorsListener() {
 
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
                                 //show search results
                             }
 
-                        });
+                        });*/
                 Log.d(TAG, "onSuggestionClicked()");
 
                 mLastQuery = searchSuggestion.getBody();
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
             @Override
             public void onSearchAction(String query) {
                 mLastQuery = query;
-
+                /*
                 DataHelper.findColors(getApplicationContext(), query,
                         new DataHelper.OnFindColorsListener() {
 
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
                                 //show search results
                             }
 
-                        });
+                        });*/
                 Log.d(TAG, "onSearchAction()");
             }
         });
