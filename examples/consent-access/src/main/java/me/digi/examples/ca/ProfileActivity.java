@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
         profileStorage = ((ProfileStorage) this.getApplicationContext());
 
         String name = getIntent().getExtras().getString("name");
-        Profile mProfile = profileStorage.getProfile(name);
+        final Profile mProfile = profileStorage.getProfile(name);
         name = mProfile.getName();
 
         nameText.setText(mProfile.getName());
@@ -99,7 +99,8 @@ public class ProfileActivity extends AppCompatActivity {
         donationConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Message message = new Message(nameInput.getText().toString(), messageInput.getText().toString(), Integer.parseInt(amountInput.getText().toString()));
+                profileStorage.addMessage(message,mProfile.getId());
                 donationOverlay.setVisibility(View.GONE);
             }
         });

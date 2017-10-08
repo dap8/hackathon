@@ -71,9 +71,10 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         heart.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse));
 
         profileStorage = ((ProfileStorage)getApplicationContext());
-        profileStorage.init();
         databasehandler = new DataBaseHandler(getApplicationContext());
         databasehandler.loadProfiles();
+        profileStorage.init(databasehandler);
+
         //addTestData();
         //List<Message> messages = new ArrayList<>();
         //databasehandler.addProfile(new Profile("bob","sick","1111",1000));
