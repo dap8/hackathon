@@ -5,22 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
+import me.digi.examples.ca.Message;
 import me.digi.examples.ca.R;
 
 /**
  * Created by steinar on 08/10/2017.
  */
 
-public class donationListAdapter extends ArrayAdapter<String> {
+public class donationListAdapter extends ArrayAdapter<Message> {
 
     public donationListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public donationListAdapter(Context context, int resource, List<String> items) {
+    public donationListAdapter(Context context, int resource, List<Message> items) {
         super(context, resource, items);
     }
 
@@ -35,24 +37,25 @@ public class donationListAdapter extends ArrayAdapter<String> {
             v = vi.inflate(R.layout.donation_list_item, null);
         }
 
-        String p = getItem(position);
+        Message p = getItem(position);
 
         if (p != null) {
-            /* TextView tt1 = (TextView) v.findViewById(R.id.id);
-            TextView tt2 = (TextView) v.findViewById(R.id.categoryId);
-            TextView tt3 = (TextView) v.findViewById(R.id.description);
+            TextView tt1 = (TextView) v.findViewById(R.id.donationAmount);
+            TextView tt2 = (TextView) v.findViewById(R.id.donationMessage);
+            TextView tt3 = (TextView) v.findViewById(R.id.donationName);
 
             if (tt1 != null) {
-                tt1.setText(p.getId());
+                tt1.setText(p.getAmount() + "$");
             }
 
             if (tt2 != null) {
-                tt2.setText(p.getCategory().getId());
+                tt2.setText(p.getMessage());
             }
 
             if (tt3 != null) {
-                tt3.setText(p.getDescription());
-            } */
+                tt3.setText(p.getName());
+            }
+
         }
 
         return v;
