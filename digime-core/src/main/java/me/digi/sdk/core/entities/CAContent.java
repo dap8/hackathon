@@ -17,7 +17,7 @@ public class CAContent {
     public int commentCount;
 
     @SerializedName("createddate")
-    public long createdDate;
+    public String createdDate;
 
     @SerializedName("entityid")
     public String entityId;
@@ -121,11 +121,26 @@ public class CAContent {
     @SerializedName("visibility")
     public String visibility;
 
+    @SerializedName("atccode")
+    public String atccode;
+
+    @SerializedName("name")
+    public String name;
+
+    @SerializedName("code")
+    public String code;
+    @SerializedName("codingsystem")
+    public String codingsystem;
+    @SerializedName("islongterm")
+    public String islongterm;
+    @SerializedName("lastregistartion")
+    public String lastregistration;
+
     @Override
     public String toString() {
-        return "File: " + this.entityId +
-                ", Title: " + this.title +
-                ", Text: " + this.text +
-                ", Created: " + this.createdDate;
+        if (this.name != null && this.code != null && this.codingsystem != null){
+            return "diagnosis: " + "'" + this.name + "'";
+        }
+        return null;
     }
 }
