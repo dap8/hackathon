@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     private int allFiles = 0;
     private String mLastQuery = "";
     private boolean mIsDarkSearchTheme = false;
+    private DataBaseHandler databasehandler;
+    private ProfileStorage profileStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +62,17 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         setContentView(R.layout.activity_main);
         dgmClient = DigiMeClient.getInstance();
 
+        profileStorage = ((ProfileStorage)getApplicationContext());
+        profileStorage.init();
+        databasehandler = new DataBaseHandler(getApplicationContext());
+        databasehandler.loadProfiles();
+
         actionButton = (FloatingActionButton) findViewById(R.id.actionButton);
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this, CallbackActivity.class), 1);
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             }
         });
 

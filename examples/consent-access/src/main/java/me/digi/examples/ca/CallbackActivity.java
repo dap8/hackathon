@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import me.digi.examples.ca.adapters.diagnosisListAdapter;
 import me.digi.sdk.core.session.CASession;
@@ -137,8 +139,14 @@ public class CallbackActivity extends AppCompatActivity {
             DigiMeClient.getInstance().getFileContent(fileId, new SDKCallback<CAFileResponse>() {
                 @Override
                 public void succeeded(SDKResponse<CAFileResponse> result) {
-                    writeStatus("Content retrieved");
-                    Log.d(TAG, "Content for file " + fileId + ": " + result.body.fileContent);
+                    if (!result.body.fileContent.toString().contains("null")){
+                        Pattern pattern = Pattern.compile("'(.*?)'");
+                        Matcher matcher = pattern.matcher(result.body.fileContent.toString());
+                        if (matcher.find())
+                        {
+                            Log.d(TAG,matcher.group(1));
+                        }
+                    }
                 }
 
                 @Override
