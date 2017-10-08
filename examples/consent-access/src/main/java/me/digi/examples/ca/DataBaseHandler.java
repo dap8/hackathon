@@ -26,12 +26,14 @@ public class DataBaseHandler {
     private ProfileStorage profileStorage;
     private String MESSAGE_CONSTANT = "messages";
     private String PROFILE_CONSTANT = "profiles";
+    private Context ctx;
 
-
-    public DataBaseHandler(ProfileStorage profileStorage){
+    public DataBaseHandler(Context ctx){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         profileEndPoint = mDatabase.child(PROFILE_CONSTANT);
-        this.profileStorage = profileStorage;
+        this.ctx = ctx;
+        profileStorage = ((ProfileStorage) ctx);
+
     }
 
     public void addProfile(Profile profile){
@@ -84,9 +86,10 @@ public class DataBaseHandler {
                     else{
                         Log.d("pepe", "has no messages");
                     }
-
-
+                    profileStorage.addProfile(profile);
                 }
+
+                Log.d("pepe", "name from barstorage: " + profileStorage.getProfiles().get(0).getName());
             }
 
             @Override

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Danni on 07/10/2017.
  */
 
-public class ProfileStorage {
+public class ProfileStorage extends Application {
     private List<Profile> profiles;
 
     public void init()
@@ -23,5 +23,9 @@ public class ProfileStorage {
 
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
+    }
+
+    public void addProfile(Profile profile){
+        profiles.add(profile);
     }
 }

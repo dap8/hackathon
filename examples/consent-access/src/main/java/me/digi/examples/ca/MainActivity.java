@@ -37,13 +37,18 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     private final AtomicInteger failedCount = new AtomicInteger(0);
     private int allFiles = 0;
     private DataBaseHandler dbHandler;
+    private ProfileStorage profileStorage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ProfileStorage profileStorage = new ProfileStorage();
-        dbHandler = new DataBaseHandler(profileStorage);
+
+        profileStorage = ((ProfileStorage) getApplicationContext());
+        profileStorage.init();
+
+        dbHandler = new DataBaseHandler(getApplicationContext());
+
 
         Profile johnDoe = new Profile("Poomba","Cancer",1000);
         Message message = new Message("Steinar", "Láttu þér batna xoxo", 1000);
