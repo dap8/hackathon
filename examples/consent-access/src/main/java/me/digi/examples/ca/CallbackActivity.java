@@ -90,6 +90,7 @@ public class CallbackActivity extends AppCompatActivity {
                 Log.d(TAG, exception.getMessage());
             }
         };
+        DigiMeClient.getInstance().createSession(cb);
 
         /*final Button startButton = (Button) findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +122,6 @@ public class CallbackActivity extends AppCompatActivity {
         authManager = DigiMeClient.getInstance().authorizeInitializedSession(this, new SDKCallback<CASession>() {
             @Override
             public void succeeded(SDKResponse<CASession> result) {
-                writeStatus("Session authorized!");
                 requestFileList();
             }
 
@@ -142,7 +142,6 @@ public class CallbackActivity extends AppCompatActivity {
 
             @Override
             public void failed(SDKException exception)  {
-                writeStatus("Failed to fetch list" + exception.getMessage());
 
             }
         });
@@ -174,7 +173,6 @@ public class CallbackActivity extends AppCompatActivity {
     }
 
     private void writeStatus(String status) {
-        statusText.setText(status);
         Log.d(TAG, status);
     }
 

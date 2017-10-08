@@ -18,7 +18,7 @@ android {
         versionName "1.0"
         resValue "string", "SAMPLE_CONTRACT_ID", sampleContractId
         resValue "string", "P12_KEYSTORE", sampleP12
-        resValue "string", "P12_KEYSTORE_PASS", ""
+        resValue "string", "P12_KEYSTORE_PASS", "digime"
     }
     buildTypes {
         debug {
