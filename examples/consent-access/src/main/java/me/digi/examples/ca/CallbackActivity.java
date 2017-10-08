@@ -45,6 +45,7 @@ public class CallbackActivity extends AppCompatActivity {
     private DataBaseHandler databasehandler;
     private String mDiagnosis;
     private EditText amountRequested;
+    private EditText bankAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class CallbackActivity extends AppCompatActivity {
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
         amountRequested = (EditText) findViewById(R.id.requestedAmountInput);
+        bankAccount = (EditText) findViewById(R.id.bankAccountInfo);
 
         createAccountButton = (Button) findViewById(R.id.createAccountButton);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +63,11 @@ public class CallbackActivity extends AppCompatActivity {
                 databasehandler = new DataBaseHandler(getApplicationContext());
                 if(mDiagnosis == null) mDiagnosis = "Herbert Guðmundsson";
                 int requestedAmount = Integer.parseInt(amountRequested.getText().toString());
-                databasehandler.addProfile(new Profile("Óskar Ólafsson", mDiagnosis, requestedAmount));
-                startActivity(new Intent(CallbackActivity.this, ProfileActivity.class));
+                String bankAccountInfo = bankAccount.getText().toString();
+                databasehandler.addProfile(new Profile("Óskar Ólafsson", mDiagnosis, bankAccountInfo, requestedAmount));
+                Intent i = new Intent(CallbackActivity.this, ProfileActivity.class);
+                i.putExtra("name", "Óskar Ólafsson");
+                startActivity(i);
             }
         });
 

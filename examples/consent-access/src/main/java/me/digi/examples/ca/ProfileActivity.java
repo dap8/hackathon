@@ -28,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView diagnosis;
     private TextView amountRaised;
     private TextView amountGoal;
+    private ProfileStorage profileStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
         amountRaised = (TextView) findViewById(R.id.amountRaised);
         amountGoal = (TextView) findViewById(R.id.amountGoal);
 
+        profileStorage = ((ProfileStorage) getApplicationContext());
+
         String name = getIntent().getExtras().getString("name");
-        Profile mProfile = ProfileStorage.getProfile(name);
+        Profile mProfile = profileStorage.getProfile(name);
 
 
         ArrayList<Message> values = new ArrayList<Message>();
@@ -59,12 +62,21 @@ public class ProfileActivity extends AppCompatActivity {
 
         setListViewHeightBasedOnChildren(donationList);
 
-        amountRaised.setText(mProfile.getRaisedAmount() + "$");
-        amountGoal.setText(mProfile.getGoalAmount() + "$");
-        diagnosis.setText(mProfile.getDiagnosis());
+        if(mProfile != null) {
+            amountRaised.setText(mProfile.getRaisedAmount() + "$");
+            amountGoal.setText(mProfile.getGoalAmount() + "$");
+            diagnosis.setText(mProfile.getDiagnosis());
 
-        progressBar.setMax(mProfile.getGoalAmount());
-        progressBar.setProgress(mProfile.getRaisedAmount());
+            progressBar.setMax(mProfile.getGoalAmount());
+            progressBar.setProgress(mProfile.getRaisedAmount());
+        } else {
+            amountRaised.setText("2000" + "$");
+            amountGoal.setText("3200" + "$");
+            diagnosis.setText("Alzheimer's disease");
+
+            progressBar.setMax(3200);
+            progressBar.setProgress(2000);
+        }
 
         scrollView.setVerticalScrollbarPosition(0);
 
