@@ -254,27 +254,27 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     @Override
     public void sessionCreated(CASession session) {
         Log.d(TAG, "Session created with token " + session.getSessionKey());
-        statusText.setText(R.string.session_created);
+        //statusText.setText(R.string.session_created);
     }
 
     @Override
     public void sessionCreateFailed(SDKException reason) {
         Log.d(TAG, reason.getMessage());
-        gotoCallback.setVisibility(View.VISIBLE);
+        //gotoCallback.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void authorizeSucceeded(CASession session) {
         Log.d(TAG, "Session created with token " + session.getSessionKey());
-        statusText.setText(R.string.session_authorized);
+        //statusText.setText(R.string.session_authorized);
         DigiMeClient.getInstance().getFileList(null);
     }
 
     @Override
     public void authorizeDenied(AuthorizationException reason) {
         Log.d(TAG, "Failed to authorize session; Reason " + reason.getThrowReason().name());
-        statusText.setText(R.string.auth_declined);
-        gotoCallback.setVisibility(View.VISIBLE);
+        //statusText.setText(R.string.auth_declined);
+        //gotoCallback.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
 
     @Override
     public void clientRetrievedFileList(CAFiles files) {
-        downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d", 0, files.fileIds.size()));
+        //downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d", 0, files.fileIds.size()));
         allFiles = files.fileIds.size();
         for (final String fileId :
                 files.fileIds) {
@@ -292,14 +292,14 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
             DigiMeClient.getInstance().getFileContent(fileId, null);
         }
         String progress = getResources().getQuantityString(R.plurals.files_retrieved, files.fileIds.size(), files.fileIds.size());
-        statusText.setText(progress);
-        gotoCallback.setVisibility(View.VISIBLE);
+        //statusText.setText(progress);
+        //gotoCallback.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void clientFailedOnFileList(SDKException reason) {
         Log.d(TAG, "Failed to retrieve file list: " + reason.getMessage());
-        gotoCallback.setVisibility(View.VISIBLE);
+        //gotoCallback.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -322,12 +322,12 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     private void updateCounters() {
         int current = counter.decrementAndGet();
         if (failedCount.get() > 0) {
-            downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d", allFiles - current, allFiles));
+            //downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d", allFiles - current, allFiles));
         } else {
-            downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d; Failed: %d", allFiles - current, allFiles, failedCount.get()));
+            //downloadedCount.setText(String.format(Locale.getDefault(), "Downloaded : %d/%d; Failed: %d", allFiles - current, allFiles, failedCount.get()));
         }
         if (current == 0) {
-            statusText.setText(R.string.data_retrieved);
+            //statusText.setText(R.string.data_retrieved);
         }
     }
 

@@ -19,6 +19,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import me.digi.examples.ca.searchData.ColorSuggestion;
+import me.digi.examples.ca.searchData.DataHelper;
+
 /**
  * Created by Danni on 07/10/2017.
  */
@@ -123,6 +126,7 @@ public class DataBaseHandler {
                     profile.setMessages(messages);
                     profileStorage.addProfile(profile);
                 }
+                DataHelper.makeSuggestionList(getColorSuggestions(profileStorage.getProfiles()));
 
                 Log.d("pepe", "name from barstorage: " + profileStorage.getProfiles().get(0).getName());
             }
@@ -133,6 +137,17 @@ public class DataBaseHandler {
             }
         });
 
+    }
+
+    public List<ColorSuggestion> getColorSuggestions(List<Profile> profiles){
+        List<ColorSuggestion> colorSuggestions = new ArrayList<>();
+
+        for(Profile profile : profiles)
+        {
+            colorSuggestions.add(new ColorSuggestion(profile.getName()));
+        }
+
+        return  colorSuggestions;
     }
 
 

@@ -1,6 +1,7 @@
 package me.digi.examples.ca.searchData;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Filter;
 
 import com.google.gson.Gson;
@@ -26,25 +27,12 @@ public class DataHelper {
     private static List<ColorWrapper> sColorWrappers = new ArrayList<>();
 
     private static List<ColorSuggestion> sColorSuggestions =
-            new ArrayList<>(Arrays.asList(
-                    new ColorSuggestion("green"),
-                    new ColorSuggestion("blue"),
-                    new ColorSuggestion("pink"),
-                    new ColorSuggestion("purple"),
-                    new ColorSuggestion("brown"),
-                    new ColorSuggestion("gray"),
-                    new ColorSuggestion("Granny Smith Apple"),
-                    new ColorSuggestion("Indigo"),
-                    new ColorSuggestion("Periwinkle"),
-                    new ColorSuggestion("Mahogany"),
-                    new ColorSuggestion("Maize"),
-                    new ColorSuggestion("Mahogany"),
-                    new ColorSuggestion("Outer Space"),
-                    new ColorSuggestion("Melon"),
-                    new ColorSuggestion("Yellow"),
-                    new ColorSuggestion("Orange"),
-                    new ColorSuggestion("Red"),
-                    new ColorSuggestion("Orchid")));
+            new ArrayList<>();
+
+    public static void makeSuggestionList(List<ColorSuggestion> profileNames) {
+        Log.d("asdfasdfasdf", "please do not read this string");
+        sColorSuggestions = profileNames;
+    }
 
     public interface OnFindColorsListener {
         void onResults(List<ColorWrapper> results);
