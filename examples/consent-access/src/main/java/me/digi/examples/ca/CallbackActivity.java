@@ -72,10 +72,6 @@ public class CallbackActivity extends AppCompatActivity {
         });
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        addRadioButton("Cancer");
-        addRadioButton("Aids");
-        addRadioButton("Rotten penis");
-        addRadioButton("Rotten anus");
 
         this.cb = new SDKCallback<CASession>() {
             @Override
