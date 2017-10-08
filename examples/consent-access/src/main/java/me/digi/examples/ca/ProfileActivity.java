@@ -32,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView amountRaised;
     private TextView amountGoal;
     private ProfileStorage profileStorage;
+    private TextView nameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,14 @@ public class ProfileActivity extends AppCompatActivity {
         diagnosis = (TextView) findViewById(R.id.profileDiagnosis);
         amountRaised = (TextView) findViewById(R.id.amountRaised);
         amountGoal = (TextView) findViewById(R.id.amountGoal);
+        nameText = (TextView) findViewById(R.id.name);
 
         profileStorage = ((ProfileStorage) this.getApplicationContext());
 
         String name = getIntent().getExtras().getString("name");
         Profile mProfile = profileStorage.getProfile(name);
+
+        nameText.setText(name);
 
 
         ArrayList<Message> values = new ArrayList<Message>();
