@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -33,6 +35,12 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView amountGoal;
     private ProfileStorage profileStorage;
     private TextView nameText;
+    private Button donationButton;
+    private LinearLayout donationOverlay;
+    private Button donationConfirmButton;
+    private EditText nameInput;
+    private EditText amountInput;
+    private EditText messageInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +55,19 @@ public class ProfileActivity extends AppCompatActivity {
         amountRaised = (TextView) findViewById(R.id.amountRaised);
         amountGoal = (TextView) findViewById(R.id.amountGoal);
         nameText = (TextView) findViewById(R.id.name);
+        donationButton = (Button) findViewById(R.id.donateButton);
+        donationOverlay = (LinearLayout) findViewById(R.id.donationOverlay);
+        donationConfirmButton = (Button) findViewById(R.id.donationConfirmButton);
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        amountInput = (EditText) findViewById(R.id.amountInput);
+        messageInput = (EditText) findViewById(R.id.messageInput);
 
         profileStorage = ((ProfileStorage) this.getApplicationContext());
 
         String name = getIntent().getExtras().getString("name");
         Profile mProfile = profileStorage.getProfile(name);
 
-        nameText.setText(name);
+        nameText.setText(mProfile.getName());
 
 
         ArrayList<Message> values = new ArrayList<Message>();
@@ -73,6 +87,21 @@ public class ProfileActivity extends AppCompatActivity {
 
         ArrayAdapter<Message> adapter = new donationListAdapter(this,
                 android.R.layout.simple_list_item_1, values);
+
+        donationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                donationOverlay.setVisibility(View.VISIBLE);
+            }
+        });
+
+        donationConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                donationOverlay.setVisibility(View.GONE);
+            }
+        });
 
 
         // Assign adapter to ListView
