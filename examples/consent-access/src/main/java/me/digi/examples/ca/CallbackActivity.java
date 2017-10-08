@@ -10,13 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import me.digi.examples.ca.adapters.diagnosisListAdapter;
 import me.digi.sdk.core.session.CASession;
 import me.digi.sdk.core.DigiMeAuthorizationManager;
 import me.digi.sdk.core.DigiMeClient;
@@ -33,13 +39,29 @@ public class CallbackActivity extends AppCompatActivity {
     private SDKCallback<CASession> cb;
     private DigiMeAuthorizationManager authManager;
     private TextView statusText;
+    private RadioGroup radioGroup;
+    private Button createAccountButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_callback);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
+
+        createAccountButton = (Button) findViewById(R.id.createAccountButton);
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CallbackActivity.this, ProfileActivity.class));
+            }
+        });
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        addRadioButton("Cancer");
+        addRadioButton("Aids");
+        addRadioButton("Rotten penis");
+        addRadioButton("Rotten anus");
 
         this.cb = new SDKCallback<CASession>() {
             @Override
@@ -55,7 +77,7 @@ public class CallbackActivity extends AppCompatActivity {
             }
         };
 
-        final Button startButton = (Button) findViewById(R.id.start_button);
+        /*final Button startButton = (Button) findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +86,13 @@ public class CallbackActivity extends AppCompatActivity {
             }
         });
 
-        statusText = (TextView) findViewById(R.id.callback_status);
+        statusText = (TextView) findViewById(R.id.callback_status);*/
+    }
 
+    public void addRadioButton(String text) {
+        RadioButton btn = new RadioButton(this);
+        btn.setText(text);
+        radioGroup.addView(btn);
     }
 
     @Override
