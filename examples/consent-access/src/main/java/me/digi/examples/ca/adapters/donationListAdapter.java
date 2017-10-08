@@ -1,6 +1,7 @@
 package me.digi.examples.ca.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class donationListAdapter extends ArrayAdapter<Message> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        Log.d("cub","ofc");
         View v = convertView;
 
         if (v == null) {
@@ -38,6 +39,7 @@ public class donationListAdapter extends ArrayAdapter<Message> {
         }
 
         Message p = getItem(position);
+        if(p==null) Log.d("cub", "p is null" );
 
         if (p != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.donationAmount);

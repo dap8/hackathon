@@ -1,6 +1,7 @@
 package me.digi.examples.ca;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ProfileStorage extends Application {
     public Profile getProfile(String name) {
         for(Profile profile : profiles)
         {
-            if(profile.getName() == name) return profile;
+            if(profile.getName().equals(name)) return profile;
         }
         return null;
     }

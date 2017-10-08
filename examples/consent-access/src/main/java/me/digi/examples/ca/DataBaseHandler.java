@@ -98,10 +98,11 @@ public class DataBaseHandler {
                     Log.d("pepe", "name: " + profile.getName());
                     Log.d("pepe", "id: " + profile.getId());
                     Log.d("pepe", "id: " + profile.getGoalAmount());
+                    Map<String, Message> messages = null;
                     if(profileSnapshot.hasChild(MESSAGE_CONSTANT))
                     {
                         Log.d("pepe", "has messages");
-                        Map<String, Message> messages = profile.getMessages();
+                         messages = profile.getMessages();
 
                         for(Map.Entry<String, Message> message : messages.entrySet())
                         {
@@ -119,6 +120,7 @@ public class DataBaseHandler {
                     else{
                         Log.d("pepe", "has no messages");
                     }
+                    profile.setMessages(messages);
                     profileStorage.addProfile(profile);
                 }
 

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
         profileStorage = ((ProfileStorage)getApplicationContext());
         profileStorage.init();
         databasehandler = new DataBaseHandler(getApplicationContext());
-        //databasehandler.loadProfiles();
+        databasehandler.loadProfiles();
         //addTestData();
         //List<Message> messages = new ArrayList<>();
         //databasehandler.addProfile(new Profile("bob","sick","1111",1000));

@@ -101,7 +101,15 @@ public class Profile {
     }
 
     public List<Message> getListedMessages() {
-        if(this.messages != null) return new ArrayList<Message>(this.messages.values());
+        if(this.messages != null)
+        {
+            List<Message> messages = new ArrayList<>();
+            for(Map.Entry<String, Message> message : this.messages.entrySet())
+            {
+                messages.add(message.getValue());
+            }
+            return messages;
+        }
         return null;
     }
 

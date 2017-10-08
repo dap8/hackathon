@@ -3,6 +3,7 @@ package me.digi.examples.ca;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import jp.wasabeef.blurry.Blurry;
 import me.digi.examples.ca.adapters.donationListAdapter;
@@ -43,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         amountRaised = (TextView) findViewById(R.id.amountRaised);
         amountGoal = (TextView) findViewById(R.id.amountGoal);
 
-        profileStorage = ((ProfileStorage) getApplicationContext());
+        profileStorage = ((ProfileStorage) this.getApplicationContext());
 
         String name = getIntent().getExtras().getString("name");
         Profile mProfile = profileStorage.getProfile(name);
@@ -52,6 +55,17 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayList<Message> values = new ArrayList<Message>();
         // Fyrir öll mProfile.messages, gera values.add(aksdjskaf);
 
+        List<Message> cat = mProfile.getListedMessages();
+
+        if(cat != null) {
+            for (Message message : cat) {
+                Log.d("cub", "dick");
+
+                values.add(message);
+                Log.d("cub", "flub");
+
+            }
+        }
 
         ArrayAdapter<Message> adapter = new donationListAdapter(this,
                 android.R.layout.simple_list_item_1, values);
@@ -70,8 +84,8 @@ public class ProfileActivity extends AppCompatActivity {
             progressBar.setMax(mProfile.getGoalAmount());
             progressBar.setProgress(mProfile.getRaisedAmount());
         } else {
-            amountRaised.setText("2000" + "$");
-            amountGoal.setText("3200" + "$");
+            amountRaised.setText("0" + "$");
+            amountGoal.setText("0" + "$");
             diagnosis.setText("Alzheimer's disease");
 
             progressBar.setMax(3200);
