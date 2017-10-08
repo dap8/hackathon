@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,12 +60,15 @@ public class MainActivity extends AppCompatActivity implements SDKListener {
     private boolean mIsDarkSearchTheme = false;
     private DataBaseHandler databasehandler;
     private ProfileStorage profileStorage;
+    private ImageView heart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dgmClient = DigiMeClient.getInstance();
+        heart = (ImageView) findViewById(R.id.heart);
+        heart.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulse));
 
         profileStorage = ((ProfileStorage)getApplicationContext());
         profileStorage.init();
