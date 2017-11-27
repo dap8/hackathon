@@ -1,5 +1,5 @@
 # Donator app
-The donator app is a crowdfunding platform for terminally ill patients that uses the Digi.me SDK to verify patient authenticity. The app was built for the Digi.me data hackathon in 2017 by <a href="https://github.com/Notandi">Óskar</a>, <a href="https://github.com/steinarsa">Steinar</a> and <a href="https://github.com/dap8">.
+The donator app is a crowdfunding platform for terminally ill patients that uses the Digi.me SDK to verify patient authenticity. The app was built for the Digi.me data hackathon in 2017 by <a href="https://github.com/Notandi">Óskar</a>, <a href="https://github.com/steinarsa">Steinar</a> and <a href="https://github.com/dap8">Daníel</a>. Please note that this version of the app is only for presentational purposes.
 
 # Digi.me SDK for Android
 
