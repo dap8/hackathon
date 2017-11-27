@@ -17,7 +17,7 @@ Digi.me SDK depends on digi.me app being installed to enable user initiated auth
 <p align="center"> <img src="https://imgur.com/L8xnnif.jpg" width="400" id="image" /> </p>
 <p align="center">A sample patient profile, a list of donations that have been made is at the bottom</p>
 
-<p align="center"> <img src="https://imgur.com/L8xnnif.jpg" width="400" id="image" /> </p>
+<p align="center"> <img src="https://imgur.com/9j0IEgU.jpg" width="400" id="image" /> </p>
 <p align="center">The profile creation screen, at the bottom there is a list of illnesses that Digi.me has registered for the patient</p>
 
 
